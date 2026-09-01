@@ -480,7 +480,7 @@ Rasterizer::forward(
         total_pairs, 0, 32 + bit, stream);
     
     // Allocate image state using memory manager
-    size_t img_chunk_size = required<cov3d_cuda::ImageState>(num_tiles, H * W, num_planes);
+    size_t img_chunk_size = required<cov3d_cuda::ImageState>((size_t)num_planes * H * W + num_tiles);
     char* img_chunk = imageBuffer(img_chunk_size);
     cov3d_cuda::ImageState img = cov3d_cuda::ImageState::fromChunk(img_chunk, num_tiles, H * W, num_planes);
     
